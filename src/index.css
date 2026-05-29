@@ -1,0 +1,406 @@
+:root {
+  --font-ui: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-child: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Playful HSL Colors for Children */
+  --bg-dark: 35 100% 97%;       /* Warm Cream #FFF8EC */
+  --bg-card: 35 100% 99%;       /* Bright Card White */
+  --bg-card-hover: 35 80% 94%;  /* Soft honey cream */
+  --border-color: 15 35% 20%;   /* Dark Brown #3E2723 */
+  
+  --primary: 355 90% 62%;       /* Coral Red #FF6B6B */
+  --primary-glow: 355 90% 62% / 0.1;
+  --secondary: 202 95% 58%;     /* Sky Blue */
+  --accent: 45 100% 50%;        /* Sunshine Yellow #FFD700 */
+  
+  --success: 145 60% 45%;       /* Grass Green #4CAF7D */
+  --warning: 35 100% 55%;       /* Amber Orange */
+  --danger: 355 90% 55%;        /* Crimson Red */
+  --text-main: 15 35% 20%;      /* Dark Brown #3E2723 */
+  --text-muted: 15 20% 42%;     /* Softer brown */
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.3) transparent;
+}
+
+body {
+  font-family: var(--font-ui);
+  background-color: hsl(var(--bg-dark));
+  color: hsl(var(--text-main));
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  background-image: 
+    radial-gradient(circle at 10% 20%, hsl(var(--secondary) / 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, hsl(var(--primary) / 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, hsl(var(--accent) / 0.1) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.6);
+}
+
+/* Premium Card Styles (Neo-brutalist Duolingo Style) */
+.glass-panel {
+  background: hsl(var(--bg-card));
+  border: 3px solid hsl(var(--border-color));
+  border-radius: 24px;
+  box-shadow: 0 8px 0 0 hsl(var(--border-color));
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 0 0 hsl(var(--border-color));
+}
+
+.glass-card-interactive {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Custom Glowing Effects */
+.glow-text-primary {
+  text-shadow: 0 2px 4px hsl(var(--primary) / 0.2);
+}
+
+.glow-text-secondary {
+  text-shadow: 0 2px 4px hsl(var(--secondary) / 0.2);
+}
+
+.glow-border-purple {
+  box-shadow: 0 8px 0 0 hsl(var(--border-color)) !important;
+  border-color: hsl(var(--border-color)) !important;
+}
+
+.glow-border-cyan {
+  box-shadow: 0 8px 0 0 hsl(var(--border-color)) !important;
+  border-color: hsl(var(--border-color)) !important;
+}
+
+/* Mascot floating and reacting animations */
+.mascot-float {
+  animation: shubh-float 3.5s ease-in-out infinite;
+}
+
+.mascot-happy {
+  animation: shubh-happy 0.8s ease-out 1;
+}
+
+.mascot-sad {
+  animation: shubh-sad 1s ease-in-out 1;
+}
+
+@keyframes shubh-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes shubh-happy {
+  0%, 100% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-16px) scale(0.95, 1.05) rotate(4deg); }
+  50% { transform: translateY(-20px) scale(1.05, 0.95) rotate(-4deg); }
+  80% { transform: translateY(0) scale(1); }
+}
+
+@keyframes shubh-sad {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-8deg) scale(0.95); }
+  75% { transform: rotate(8deg) scale(0.95); }
+}
+
+@keyframes button-wobble {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(0.95) rotate(-2deg); }
+  30%, 50%, 70%, 90% { transform: scale(1.02) rotate(2deg); }
+  40%, 60%, 80% { transform: scale(1.02) rotate(-2deg); }
+}
+
+.wobble-hover:hover {
+  animation: button-wobble 0.6s ease-in-out;
+}
+
+/* Microservice Animating Nodes */
+.pod-active {
+  animation: pulse-pod 2s infinite alternate;
+}
+
+@keyframes pulse-pod {
+  0% {
+    box-shadow: 0 0 8px hsl(var(--primary) / 0.2);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+  100% {
+    box-shadow: 0 0 18px hsl(var(--primary) / 0.6);
+    border-color: hsl(var(--primary) / 0.7);
+  }
+}
+
+.pod-flashing {
+  animation: flash-pod 0.6s ease-out 2;
+}
+
+@keyframes flash-pod {
+  0%, 100% {
+    background: rgba(22, 18, 36, 0.45);
+  }
+  50% {
+    background: hsl(var(--secondary) / 0.3);
+    box-shadow: 0 0 25px hsl(var(--secondary) / 0.8);
+    border-color: hsl(var(--secondary) / 1);
+    transform: scale(1.05);
+  }
+}
+
+/* Child App Animations & HUD styling */
+.child-btn {
+  font-family: var(--font-child);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transform: translateY(0);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.child-btn:active {
+  transform: scale(0.95) translateY(2px);
+}
+
+/* Daily Streak Fire Icon Animation */
+@keyframes streak-fire {
+  0%, 100% {
+    transform: scale(1) rotate(-3deg);
+    filter: drop-shadow(0 2px 5px #ff512f);
+  }
+  50% {
+    transform: scale(1.15) rotate(3deg);
+    filter: drop-shadow(0 4px 12px #dd2476);
+  }
+}
+
+.animate-streak-fire {
+  animation: streak-fire 1.2s infinite ease-in-out;
+}
+
+/* SAM2 face segment scanner line animation */
+@keyframes scan-line {
+  0% {
+    top: 5%;
+  }
+  50% {
+    top: 95%;
+  }
+  100% {
+    top: 5%;
+  }
+}
+
+.animate-scan {
+  position: relative;
+}
+
+.animate-scan::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, hsl(var(--secondary)), transparent);
+  box-shadow: 0 0 10px hsl(var(--secondary));
+  animation: scan-line 2.5s infinite linear;
+  z-index: 10;
+}
+
+/* SAM2 pixel-outline green glowing face overlay */
+.segmented-path {
+  stroke-dasharray: 8;
+  animation: dash 1.5s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+/* Apache Kafka particle streams */
+.kafka-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: hsl(var(--secondary));
+  box-shadow: 0 0 6px hsl(var(--secondary));
+  animation: float-along 1.5s linear infinite;
+}
+
+@keyframes float-along {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy));
+    opacity: 0;
+  }
+}
+
+/* Skill Tree nodes connection animation */
+.skill-line-active {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-line 2s ease-out forwards;
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Lottie custom mockup bubble burst */
+@keyframes bubble-burst {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.bubble-burst-effect {
+  animation: bubble-burst 0.6s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+}
+
+/* Phone Bezel Simulator styling (Duolingo visual mockup) */
+.phone-bezel {
+  border: 12px solid hsl(var(--border-color));
+  border-radius: 40px;
+  box-shadow: 
+    0 16px 0 0 hsl(var(--border-color)),
+    0 25px 30px rgba(0, 0, 0, 0.1);
+  background-color: #FFFDF9;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.phone-bezel:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 20px 0 0 hsl(var(--border-color)),
+    0 30px 40px rgba(0, 0, 0, 0.15);
+}
+
+.phone-screen {
+  background: radial-gradient(circle at 50% 0%, #E8F4FD 0%, #FFF8EC 100%);
+  color: hsl(var(--text-main));
+  font-family: var(--font-child);
+  font-size: 16px;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Typing indicator for AI Buddy */
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background-color: hsl(var(--text-muted));
+  border-radius: 50%;
+  animation: bounce-dot 1.4s infinite ease-in-out both;
+}
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1.0); }
+}
+
+/* Floating animation for avatars */
+@keyframes float-avatar {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+.avatar-floating {
+  animation: float-avatar 4s ease-in-out infinite;
+}
+
+/* Confetti background for wins */
+.celebrate-screen {
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 223, 0, 0.1) 0%, transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(255, 105, 180, 0.1) 0%, transparent 30%);
+}
+
+/* Animated Pip & Hop sidekicks keyframes */
+@keyframes pip-fly {
+  0%, 100% { transform: translateY(0px) rotate(-3deg); }
+  50% { transform: translateY(-4px) rotate(3deg); }
+}
+.pip-character {
+  animation: pip-fly 2.5s ease-in-out infinite;
+}
+
+@keyframes hop-jump {
+  0%, 100% { transform: translateY(0px) scaleY(1); }
+  45% { transform: translateY(-8px) scaleY(1.05); }
+  50% { transform: translateY(-10px) scaleY(0.95); }
+  55% { transform: translateY(-8px) scaleY(1.05); }
+  90% { transform: translateY(0px) scaleY(1); }
+}
+.hop-character {
+  animation: hop-jump 3s ease-in-out infinite;
+}
+
+/* Green magic cartoonizer vertical scan bar keyframe */
+@keyframes green-laser-sweep {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+.laser-green-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, transparent, #22c55e, transparent);
+  box-shadow: 0 0 12px #22c55e, 0 0 20px rgba(34, 197, 94, 0.5);
+  animation: green-laser-sweep 2.5s infinite linear;
+  z-index: 40;
+}
+

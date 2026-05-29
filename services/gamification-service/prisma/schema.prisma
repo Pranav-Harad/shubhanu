@@ -1,0 +1,33 @@
+// Prisma Schema for Gamification Microservice (PostgreSQL)
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ChildProgress {
+  childId        String   @id // Matches Child ID from User Service
+  totalXp        Int      @default(0)
+  streakDays     Int      @default(0)
+  storyGems      Int      @default(0)
+  lastActiveDate DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("child_progress")
+}
+
+model Badge {
+  id          String   @id @default(uuid())
+  childId     String
+  badgeName   String
+  description String
+  icon        String
+  unlockedAt  DateTime @default(now())
+
+  @@index([childId])
+  @@map("badges")
+}

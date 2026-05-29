@@ -1,0 +1,86 @@
+_format_version: "3.0"
+_transform: true
+
+# -----------------------------------------------------------------
+# KONG GATEWAY DECLARATIVE CONFIGURATION (DB-LESS MODE)
+# Maps public endpoints to docker network services
+# -----------------------------------------------------------------
+
+services:
+  # 1. Auth Service
+  - name: auth-service
+    url: http://host.docker.internal:5000
+    routes:
+      - name: auth-routes
+        paths:
+          - /api/v1/auth
+        strip_path: false
+
+  # 2. User Service
+  - name: user-service
+    url: http://host.docker.internal:5001
+    routes:
+      - name: user-routes
+        paths:
+          - /api/v1/children
+          - /api/v1/parent
+        strip_path: false
+
+  # 3. Story Engine Service
+  - name: story-service
+    url: http://host.docker.internal:5003
+    routes:
+      - name: story-routes
+        paths:
+          - /api/v1/story
+        strip_path: false
+
+  # 4. NLP Tutor Service
+  - name: nlp-service
+    url: http://host.docker.internal:5004
+    routes:
+      - name: nlp-routes
+        paths:
+          - /api/v1/tutor
+        strip_path: false
+
+  # 5. Gamification Service
+  - name: gamification-service
+    url: http://host.docker.internal:5002
+    routes:
+      - name: gamification-routes
+        paths:
+          - /api/v1/gamification
+        strip_path: false
+
+  # 6. Analytics Service
+  - name: analytics-service
+    url: http://host.docker.internal:5005
+    routes:
+      - name: analytics-routes
+        paths:
+          - /api/v1/analytics
+        strip_path: false
+
+plugins:
+  # Enable global CORS support for web dashboards & mobile queries
+  - name: cors
+    config:
+      origins:
+        - "*"
+      methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      headers:
+        - Accept
+        - Accept-Version
+        - Content-Length
+        - Content-Type
+        - Authorization
+      exposed_headers:
+        - Authorization
+      credentials: true
+      max_age: 3600

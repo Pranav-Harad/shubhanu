@@ -1,0 +1,39 @@
+// Prisma Schema for User Profile Microservice (PostgreSQL)
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ParentSettings {
+  id                 String   @id // Matches Parent ID from Auth JWT
+  screenLimitMinutes Int      @default(30)
+  isBedtimeLocked    Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  children           Child[]
+
+  @@map("parent_settings")
+}
+
+model Child {
+  id             String         @id @default(uuid())
+  parentId       String
+  name           String
+  dateOfBirth    DateTime
+  ageGroup       String         // Calculated: "5-7", "8-11", "12-14"
+  avatarUrls     String[]       // Holds array of CDN URLs per art style
+  currentWorldId Int            @default(1)
+  totalXp        Int            @default(0)
+  streakDays     Int            @default(0)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  
+  parent         ParentSettings @relation(fields: [parentId], references: [id], onDelete: Cascade)
+
+  @@map("children")
+}

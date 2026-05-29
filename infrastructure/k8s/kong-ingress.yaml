@@ -1,0 +1,35 @@
+# -------------------------------------------------------------
+# SHUBHANU Kong Ingress / Gateway Public Routing Manifest
+# Maps public load-balancer connections to EKS services
+# -------------------------------------------------------------
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shubhanu-ingress
+  namespace: shubhanu-prod
+  annotations:
+    konghq.com/protocols: "http,https"
+    konghq.com/strip-path: "false"
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          # Auth Routing
+          - path: /api/v1/auth
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service-svc
+                port:
+                  number: 5000
+
+          # Story Routing
+          - path: /api/v1/story
+            pathType: Prefix
+            backend:
+              service:
+                name: story-service-svc
+                port:
+                  number: 8000

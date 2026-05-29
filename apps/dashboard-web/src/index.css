@@ -1,0 +1,132 @@
+:root {
+  --font-ui: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Playful warm cream theme */
+  --bg-dark: 35 100% 97%;       /* Warm Cream #FFF8EC */
+  --bg-card: 35 100% 99%;       /* Bright Card White */
+  --bg-card-hover: 35 80% 94%;  /* Soft honey cream */
+  --border-color: 15 35% 20%;   /* Dark Brown #3E2723 */
+  
+  --primary: 355 90% 62%;       /* Coral Red #FF6B6B */
+  --secondary: 202 95% 58%;     /* Sky Blue */
+  --accent: 45 100% 50%;        /* Sunshine Yellow #FFD700 */
+  
+  --success: 145 60% 45%;       /* Grass Green #4CAF7D */
+  --warning: 35 100% 55%;       /* Amber Orange */
+  --danger: 355 90% 55%;        /* Crimson Red */
+  --text-main: 15 35% 20%;      /* Dark Brown #3E2723 */
+  --text-muted: 15 20% 42%;     /* Softer brown */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-ui);
+  background-color: hsl(var(--bg-dark));
+  color: hsl(var(--text-main));
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 10%, hsl(var(--primary) / 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, hsl(var(--secondary) / 0.1) 0%, transparent 40%);
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+  background: hsl(var(--bg-card));
+  border-right: 3px solid hsl(var(--border-color));
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 6px 0 0 0 rgba(0,0,0,0.02);
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.glass-card {
+  background: hsl(var(--bg-card));
+  border: 3px solid hsl(var(--border-color));
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 8px 0 0 hsl(var(--border-color));
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 0 0 hsl(var(--border-color));
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px 16px;
+  background: hsl(var(--bg-card));
+  border: 3px solid hsl(var(--border-color));
+  border-radius: 16px;
+  color: hsl(var(--text-main));
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  transition: border-color 0.2s;
+  box-shadow: 2px 2px 0 0 hsl(var(--border-color));
+}
+
+.input-field:focus {
+  border-color: hsl(var(--primary));
+}
+
+.primary-btn {
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+  border: 3px solid hsl(var(--border-color));
+  color: hsl(var(--text-main));
+  padding: 14px 24px;
+  border-radius: 16px;
+  font-weight: 900;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 0 hsl(var(--border-color));
+  transition: all 0.2s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 4px 4px 0 0 hsl(var(--border-color));
+}
+
+.primary-btn:active {
+  transform: translateY(1px);
+  box-shadow: 2px 2px 0 0 hsl(var(--border-color));
+}
+
+/* Custom progress bars */
+.progress-bar-bg {
+  width: 100%;
+  height: 14px;
+  background: hsl(var(--border-color) / 0.1);
+  border: 2px solid hsl(var(--border-color));
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1s ease-out;
+}
