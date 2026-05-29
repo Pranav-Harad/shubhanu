@@ -192,5 +192,3 @@ Scan the QR code displayed in the terminal with your phone using **Expo Go** (An
 
 ---
 
-## 🎖️ Acknowledgments
-Special thanks to PCCOE faculty members, advisors, and reviewers for their guidance during the final year project reviews. A heartfelt tribute to **Shubhra Harad**—who is both the core tester and primary inspiration for this learning experience! 🌸
